@@ -30,21 +30,16 @@
 	<target name="batch" depends="test">
 	 <junit dir="${build.dir}" fork="true">
 	    <formatter type="xml" usefile="true"/>
-		<classpath location="target/classes-test/" />
-		<classpath refid="tests.classpath" />
-		<batchtest todir="${test.report.dir}"/>
+		<classpath path="${build.dir}" />
+		
+		<batchtest todir="${test.report.dir}">
 		  <fileset dir="${src.dir}">
 		    <include name="**/*Test.class" />
+		  </fileset>
+		</batchtest>
 	  </junit>		
 	</target>
-	<target name="test-report" depends="batch">
-	  <junitreport todir="${test.report.dir}">
-	  <fileset dir="${test.report.dir}">
-	     <include name="TEST-*.xml"/>
-	   </fileset>
-	   <report todir="${test.report.dir}/html" format="frames"/>
-	   </junitreport>
-	</target>
+	
 	<target name="jar" depends="test">
 		<jar destfile="target/jenkins-exemplo.jar" basedir="target/classes/" />
 	</target>
