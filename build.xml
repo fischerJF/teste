@@ -1,4 +1,3 @@
-	
 <project name="Projecto de exemplo para build no jenkins">
 	
 	<path id="tests.classpath" path=".">
@@ -27,19 +26,6 @@
 			</batchtest>
 		</junit>
 	</target>
-	<target name="batch" depends="test">
-	 <junit dir="${build.dir}" fork="true">
-	    <formatter type="xml" usefile="true"/>
-		<classpath path="${build.dir}" />
-		
-		<batchtest todir="${test.report.dir}">
-		  <fileset dir="${src.dir}">
-		    <include name="**/*Test.class" />
-		  </fileset>
-		</batchtest>
-	  </junit>		
-	</target>
-	
 	<target name="jar" depends="test">
 		<jar destfile="target/jenkins-exemplo.jar" basedir="target/classes/" />
 	</target>
