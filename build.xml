@@ -27,6 +27,16 @@
 			</batchtest>
 		</junit>
 	</target>
+	<target name="batch" depends="test">
+	 <junit dir="${build.dir}" fork="true">
+	    <formatter type="xml" usefile="true"/>
+		<classpath location="target/classes-test/" />
+		<classpath refid="tests.classpath" />
+		<batchtest todir="${test.report.dir}"/>
+		  <fileset dir="${src.dir}">
+		    <include name="**/*Test.class" />
+	  </junit>		
+	</target>
 	<target name="jar" depends="test">
 		<jar destfile="target/jenkins-exemplo.jar" basedir="target/classes/" />
 	</target>
