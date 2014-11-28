@@ -39,14 +39,6 @@
 		</batchtest>
 	  </junit>		
 	</target>
-	<target name="test-report" depends="batch">
-	  <junitreport todir="${test.report.dir}">
-	   <fileset dir="${src.dir}">
-	     <include name="TEST-*.xml"/>
-	   </fileset>
-	   <report todir="${test.report.dir}/html" format="frames"/>
-	   </junitreport>
-	</target>
 	<target name="jar" depends="test">
 		<jar destfile="target/jenkins-exemplo.jar" basedir="target/classes/" />
 	</target>
