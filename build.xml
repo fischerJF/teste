@@ -17,7 +17,7 @@
 	
 	<target name="test" depends="compile">
 		<junit fork="yes" forkmode="once"  printsummary="true" showoutput="true" failureproperty="failed-test" haltonfailure="true" >
-			<formatter type="plain" usefile="false" />
+			<formatter type="xml" usefile="true" />
 			<classpath location="target/classes-test/" />
 			<classpath refid="tests.classpath" />
 			<batchtest fork="yes" todir="${artifacts.dir}/reports">
@@ -25,9 +25,16 @@
 					<include name="**/*Test.class" />
 				</fileset>
 			</batchtest>
-			<formatter type="xml" usefile="true"/>
 		</junit>
 	</target>
+	<target name="test-reports" depends="test">
+    <junitreport tofile="TESTS-TestSuites.xml" todir="${artifacts.dir}/reports">
+        <fileset dir="target/classes-test/" >
+            <include name="TEST-*.xml" />
+        </fileset>
+        <report format="frames" todir="${artifacts.dir}/reports" />
+    </junitreport>
+</target>
 	<target name="jar" depends="test">
 		<jar destfile="target/jenkins-exemplo.jar" basedir="target/classes/" />
 	</target>
